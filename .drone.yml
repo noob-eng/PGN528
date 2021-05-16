@@ -13,7 +13,7 @@ steps:
       - mkdir pb && cd pb
       - repo init --depth=1 -u git://github.com/PitchBlackRecoveryProject/manifest_pb.git -b android-6.0
       - repo sync -c -j4 --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync
-      - https://github.com/noob-eng/PGN528.git device/condor/PGN528
+      - git clone https://github.com/noob-eng/PGN528.git device/condor/PGN528
       - . build/envsetup.sh &&lunch omni_PGN528-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka recoveryimage
       - cd out/target/proudct/merlin
       - curl -sL https://git.io/file-transfer | sh
