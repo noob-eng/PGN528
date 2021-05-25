@@ -27,10 +27,12 @@ jobs:
            lunch omni_${DEVICE}-eng
            mka recoveryimage -j$(nproc --all)
            export BUILDFILE_IMG=$(find $(pwd)/out/target/product/${DEVICE}/recovery.img 2>/dev/null)
-           export UPLOAD_PATH=$(pwd)/out/target/product/${DEVICE}/upload/
-           mkdir ${UPLOAD_PATH}
-           cp $BUILDFILE_IMG $UPLOAD_PATH
-           ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n "Latest Release for $(echo $DEVICE)" -b "TWRP $(echo $VERSION)"  -c ${CIRCLE_SHA1} -delete ${VERSION} ${UPLOAD_PATH}
+    #       export UPLOAD_PATH=$(pwd)/out/target/product/${DEVICE}/upload/
+    #       mkdir ${UPLOAD_PATH}
+    #       cp $BUILDFILE_IMG $UPLOAD_PATH
+    #       ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -n "Latest Release for $(echo $DEVICE)" -b "TWRP $(echo $VERSION)"  -c ${CIRCLE_SHA1} -delete ${VERSION} ${UPLOAD_PATH}
+           curl -s --upload-file /home/builder/project/out/target/product/PGN528/recovery.img   https://transfer.sh/ && echo ""
+
 workflows:
   version: 2.1
   cooking:
